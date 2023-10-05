@@ -86,7 +86,7 @@ http://localhost:36000/index.html
 
 ### Usando la instancia ec2 de AWS
 
-Después de haber configurado los grupos de seguridad de la instancia para permitir el tráfico por los puertos que usaremos, ingresamos a la instancia mediante ssh y corremos los comandos del punto anterior para correr las instancias de los recursos que usaremos. Una vez hecho esto podemos acceder al servicio mediante la url específica de la instancia, indicando el puerto y el recurso solicitado.
+Después de haber configurado los grupos de seguridad de la instancia para permitir el tráfico por los puertos que usaremos, ingresamos a la instancia mediante ssh y ejecutamos los comandos del punto anterior para correr las instancias de los recursos que usaremos. Una vez hecho esto podemos acceder al servicio mediante la url específica de la instancia, indicando el puerto y el recurso necesario.
 
 ```
 http://ec2-54-152-7-103.compute-1.amazonaws.com:36000/index.html
