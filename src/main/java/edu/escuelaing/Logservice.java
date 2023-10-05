@@ -1,4 +1,4 @@
-package org.example;
+package edu.escuelaing;
 
 import java.io.IOException;
 
@@ -10,14 +10,14 @@ public class Logservice {
         port(getPort());
         staticFiles.location("/public");
 
-        get("log", (req, res) -> {
-            String msg = "";
+        get("logService", (req, res) -> {
+            String msg = req.queryParams("value").replace(" ", "%20");;
             return logMessage(msg);
         });
     }
 
     private static String logMessage(String msg) throws IOException {
-        return HttpConnectionExample.logMessage(msg);
+        return HttpConnection.logMessage(msg);
     }
 
 

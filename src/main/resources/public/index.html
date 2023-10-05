@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Form Example</title>
+    <title>AREP Lab 06</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<h1>Form with GET</h1>
+<h1>AREP Lab 06</h1>
 <form action="/hello">
     <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" value="John"><br><br>
+    <input type="text" id="name" name="name"><br><br>
     <input type="button" value="Submit" onclick="loadGetMsg()">
 </form>
-<div id="getrespmsg"></div>
+
+<ul id="json-list"></ul>
 
 <script>
             function loadGetMsg() {
                 let nameVar = document.getElementById("name").value;
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function() {
-                    document.getElementById("getrespmsg").innerHTML =
-                    this.responseText;
+                    const jsonResponse = JSON.parse(this.responseText);
+
+                    const stringDateList = [];
+                    jsonResponse.forEach(jsonObject => {
+                        stringDateList.push(jsonObject.date + " - " + jsonObject.string);
+                    });
+
+                    const jsonListElement = document.querySelector("#json-list");
+                    jsonListElement.innerHTML = "";
+                    stringDateList.forEach(stringDate => {
+                        const listItemElement = document.createElement("li");
+                        listItemElement.textContent = stringDate;
+                        jsonListElement.appendChild(listItemElement);
+                    });
                 }
-                xhttp.open("GET", "/log?msg="+nameVar);
+
+                xhttp.open("GET", "/logService?value=" + nameVar);
                 xhttp.send();
             }
         </script>
